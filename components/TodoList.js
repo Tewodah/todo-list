@@ -38,13 +38,13 @@ if (error ===true){
             {todo.title}
           </Text>
           <TouchableOpacity>
+          <MaterialCommunityIcons name="checkbox-blank" size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity>
           <Feather name="edit" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity>
           <AntDesign name="delete" size={24} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-          <MaterialCommunityIcons name="checkbox-blank" size={24} color="white" />
           </TouchableOpacity>
           </View>
         ))}
