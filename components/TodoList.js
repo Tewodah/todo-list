@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import {useEffect} from "react";
-import {StyleSheet,Text, View,TextInput,ScrollView, Button,} from "react-native";
+import {StyleSheet,Text, View,TextInput,ScrollView, Button, TouchableOpacity,} from "react-native";
 import { useSelector } from "react-redux";
 import { error, loading } from "../lib/features/TodoList/reducers";
 import { getTodos } from "../lib/features/TodoList/service";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Feather from '@expo/vector-icons/Feather';
 
 export default function TodoList({ navigation }) {
   const {todoList , loading , error } = useSelector((state)=> state.todoList);
@@ -35,7 +37,15 @@ if (error ===true){
           <Text key={i} style={{...styles.todoText, backgroundColor:todo.completed? "green": ""}}>
             {todo.title}
           </Text>
+          <TouchableOpacity>
+          <Feather name="edit" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <AntDesign name="delete" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity>
           <MaterialCommunityIcons name="checkbox-blank" size={24} color="white" />
+          </TouchableOpacity>
           </View>
         ))}
       </ScrollView>
