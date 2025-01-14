@@ -27,7 +27,7 @@ if (error ===true){
         title="Add Todo"
         onPress={() => navigation.navigate("todoForm")}
       />
-      <Text style={styles.title}>Todolist App!</Text>
+      <Text style={styles.title}>Todo-Lists</Text>
       <TextInput placeholder="search" style={styles.input}></TextInput>
       <ScrollView>
         {todoList.map((todo, i) => (
@@ -35,7 +35,7 @@ if (error ===true){
           <Text key={i} style={{...styles.todoText, backgroundColor:todo.completed? "green": ""}}>
             {todo.title}
           </Text>
-          <MaterialCommunityIcons name="checkbox-blank" size={24} color="black" />
+          <MaterialCommunityIcons name="checkbox-blank" size={24} color="white" />
           </View>
         ))}
       </ScrollView>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 100,
+    fontSize: 60,
     fontWeight: "600",
     fontFamily: "gothic, sans-serif",
   },

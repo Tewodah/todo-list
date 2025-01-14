@@ -34,7 +34,7 @@ export default function TodoForm({navigation}) {
           title="GO Back"
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.title}>Todolist form!</Text>
+        <Text style={styles.title}>Todolist Form</Text>
         <TextInput placeholder="search" onChangeText={setTodo} style={styles.input}></TextInput>
         <Button title= "save Todo" onPress={saveTodo}/>
       </View>
@@ -66,18 +66,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#b0b6fc",
     fontSize: 100,
     alignItems: "center",
   },
   title: {
-    fontSize: 100,
+    fontSize: 60,
     fontWeight: "600",
     fontFamily: "gothic, sans-serif",
   },
   input: {
     color: "#fff",
-    backgroundColor: "#F0F0F0",
+    backgroundColor: "black",
     Text: "#3333333",
     width: 400,
     padding: 10,
