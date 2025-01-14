@@ -4,6 +4,7 @@ import {StyleSheet,Text, View,TextInput,ScrollView, Button,} from "react-native"
 import { useSelector } from "react-redux";
 import { error, loading } from "../lib/features/TodoList/reducers";
 import { getTodos } from "../lib/features/TodoList/service";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function TodoList({ navigation }) {
   const {todoList , loading , error } = useSelector((state)=> state.todoList);
@@ -30,10 +31,12 @@ if (error ===true){
       <TextInput placeholder="search" style={styles.input}></TextInput>
       <ScrollView>
         {todoList.map((todo, i) => (
+          <View style={styles.todocontainer} key={i}>
           <Text key={i} style={{...styles.todoText, backgroundColor:todo.completed? "green": ""}}>
             {todo.title}
-          
           </Text>
+          <MaterialCommunityIcons name="checkbox-blank" size={24} color="black" />
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -80,6 +83,11 @@ const styles = StyleSheet.create({
     width: 400,
     padding: 10,
     margin: 25,
+  },
+  todocontainer:{
+ flexDirection: "row",
+ alignItems: "center",
+ justifyContent:"space-between",
   },
 
   todoText: {
