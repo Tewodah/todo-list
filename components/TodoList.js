@@ -3,13 +3,20 @@ import {useEffect} from "react";
 import {StyleSheet,Text, View,TextInput,ScrollView, Button, TouchableOpacity,} from "react-native";
 import { useSelector } from "react-redux";
 import { error, loading } from "../lib/features/TodoList/reducers";
-import { getTodos } from "../lib/features/TodoList/service";
+import { getTodos,  updateTodoStatus , deleteTodo} from "../lib/features/TodoList/service";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import Feather from '@expo/vector-icons/Feather';
+
 
 export default function TodoList({ navigation }) {
   const {todoList , loading , error } = useSelector((state)=> state.todoList);
+
+function changeTodostatus(todo){
+
+  updateTodoStatus({id: todo.id , completed : !todo.completed});
+
+}
+
+
 
   useEffect(()=> {
   getTodos();
@@ -34,18 +41,25 @@ if (error ===true){
       <ScrollView>
         {todoList.map((todo, i) => (
           <View style={styles.todocontainer} key={i}>
-          <Text key={i} style={{...styles.todoText, backgroundColor:todo.completed? "green": ""}}>
-            {todo.title}
-          </Text>
-          <TouchableOpacity>
-          <MaterialCommunityIcons name="checkbox-blank" size={24} color="white" />
+          <Text style = {styles.todoText}>{todo.title} </Text>
+          <TouchableOpacity onPress={() => changeTodostatus(todo)}>
+          <MaterialCommunityIcons 
+          name={todo.completed? "checkbox-marked":"checkbox-blank"} 
+          size={40} 
+          color= { todo.completed? "green" :"gray" }
+          style = {{paddingHorizontal :30}}
+          />
           </TouchableOpacity>
-          <TouchableOpacity>
-          <Feather name="edit" size={24} color="black" />
+
+          <TouchableOpacity onPress={() => deleteTodo({id:todo.id})}>
+          <MaterialCommunityIcons 
+          name="delete"
+          size={40} 
+          color=  "red"
+          style = {{paddingHorizontal :30}}
+          />
           </TouchableOpacity>
-          <TouchableOpacity>
-          <AntDesign name="delete" size={24} color="black" />
-          </TouchableOpacity>
+       
           </View>
         ))}
       </ScrollView>
@@ -77,7 +91,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#b0b6fc",
+    backgroundColor: "gray",
     fontSize: 100,
     alignItems: "center",
   },
@@ -94,18 +108,19 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 25,
   },
+  
   todocontainer:{
  flexDirection: "row",
  alignItems: "center",
  justifyContent:"space-between",
+ color: "#000",
+  backgroundColor: "white",
   },
 
   todoText: {
-    color: "#000",
-    backgroundColor: "#fff",
     Text: "#3333333",
     width: 400,
-    padding: 10,
-    margin: 25,
+    padding: 20,
+   
   },
 });
